@@ -97,9 +97,6 @@ var RequestTwitter = new Class({
 	/*--------------- Initialize Method ---------------*/
 	initialize: function(options){
 		this.parent(options);
-		// You may only pass certain parameters, others would remain the same.
-		if(!options) {options = {};}
-		this.updateParams(Object.append(this.options.parameters, options.parameters));
 	},
   
 	/*--------------- Update Parameters Method ---------------*/
@@ -125,24 +122,23 @@ var RequestTwitter = new Class({
 	
 	/*--------------- Delete Parameters Method ---------------*/
 	deleteParams: function(/*string names of parameters to delete*/) {
-		if(arguments.length > 0) {			
-			// Sorry but didn't find an easier way to delete pair key/value since append doesn't seem to be asigning new null values.
-			Array.each(arguments, function(arg, index) {
-				this.options.data = Object.filter(this.options.data, function(value, key) {
-						return key!=arg;
-				}, this);
-				this.options.parameters = Object.map(this.options.parameters, function(value, key) {
-						if(key == arg) {
-							return null;
-						}
-						else
-						{
-							return value;
-						}
-				}, this);
+		if(arguments.length == 0) {return this;}
+				
+		// Sorry but didn't find an easier way to delete pair key/value since append doesn't seem to be asigning new null values.
+		Array.each(arguments, function(arg, index) {
+			this.options.data = Object.filter(this.options.data, function(value, key) {
+					return key!=arg;
 			}, this);
-
-		}
+			this.options.parameters = Object.map(this.options.parameters, function(value, key) {
+					if(key == arg) {
+						return null;
+					}
+					else
+					{
+						return value;
+					}
+			}, this);
+		}, this);
 	},
   
 	/*--------------- Changes Twitter User ---------------*/
