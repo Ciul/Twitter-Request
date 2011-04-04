@@ -130,13 +130,7 @@ var RequestTwitter = new Class({
 					return key!=arg;
 			}, this);
 			this.options.parameters = Object.map(this.options.parameters, function(value, key) {
-					if(key == arg) {
-						return null;
-					}
-					else
-					{
-						return value;
-					}
+					return key == arg ? null : value;
 			}, this);
 		}, this);
 	},
