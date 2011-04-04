@@ -67,7 +67,7 @@ var RequestTwitter = new Class({
 	Extends: Request.JSONP,
 	
 	// implements 
-	Implements: [Options,Events],
+	//Implements: [Options,Events],
 
 	options: {
 		linkify: true,
